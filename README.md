@@ -46,6 +46,15 @@ But wait... there's more!
   line!
 - _Catch problems:_ AppVeyor and TravisCI setups included by default, so your
   tests get run automatically on Windows and Unix.
+- Installed:
+
+  1. Next.js App (Need to configure the Scripts in package.json)
+  2. UI libraries - Ant Design and Material UI
+  3. Linting - ESLint
+  4. Unit testing Framework - Jest
+  5. Webpack for different dev and production workflows
+  6. Redux Thunk Integrated
+  7. Can choose from different config mechanisms
 
 There’s also a <a href="https://vimeo.com/168648012">fantastic video</a> on how to structure your React.js apps with scalability in mind. It provides rationale for the majority of boilerplate's design decisions.
 
