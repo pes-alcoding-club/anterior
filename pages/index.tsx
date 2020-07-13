@@ -1,12 +1,11 @@
 import React from 'react';
-import Layout from '../components/Layout/Layout';
-
+import Page from '../components/Page';
 
 const Index  = ():JSX.Element => {
 	return (
-		<Layout title="Home">
+		<Page title="Home">
 		    <h1>Anterior</h1>
-		</Layout>
+		</Page>
 	);
 };
 
