@@ -33,7 +33,8 @@
 		"redux": "^4.0.5",
 		"redux-devtools-extension": "^2.13.8",
 		"redux-thunk": "^2.3.0",
-		"typescript": "^3.9.6"
+		"typescript": "^3.9.6",
+		"webpack": "^4.43.0"
 	},
 	"devDependencies": {
 		"@types/next": "^9.0.0",

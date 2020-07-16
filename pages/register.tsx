@@ -1,6 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
-import { Form, Input, Button} from 'antd';
+import { Form, Input, Button } from 'antd';
 import { MailOutlined, LockOutlined, UserOutlined } from '@ant-design/icons';
 import axios from '../axios';
 import Router from 'next/router';

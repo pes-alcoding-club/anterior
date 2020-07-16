@@ -11,7 +11,7 @@ const Index = (): JSX.Element => {
 				<title>AlCoding</title>
 			</Head>
 			<div className = "index-container"> 
-				<h1>The AlCoding Club PESU</h1>
+				<h1>The AlCoding Club PESU Web Coding Portal</h1>
 			</div>
 		</>
 	);
