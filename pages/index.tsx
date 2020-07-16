@@ -1,11 +1,19 @@
 import React from 'react';
-import Page from '../components/Page';
+import Head from 'next/head';
+import '../css/Index.module.css';
 
-const Index  = ():JSX.Element => {
+const Index = (): JSX.Element => {
 	return (
-		<Page title="Home">
-		    <h1>Anterior</h1>
-		</Page>
+		<>
+			<Head>
+				<meta charSet="utf-8" />
+				<meta name="viewport" content="initial-scale=1.0, width=device-width" />
+				<title>AlCoding</title>
+			</Head>
+			<div className = "index-container"> 
+				<h1>The AlCoding Club PESU</h1>
+			</div>
+		</>
 	);
 };
 

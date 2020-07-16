@@ -1,92 +1,138 @@
 import React from 'react';
-import { Form, Input, Button, Checkbox } from 'antd';
-import { UserOutlined, LockOutlined, MailOutlined } from '@ant-design/icons';
+import Head from 'next/head';
+import { Form, Input, Button} from 'antd';
+import { MailOutlined, LockOutlined, UserOutlined } from '@ant-design/icons';
 import axios from '../axios';
-import Page from '../components/Page';
+import Router from 'next/router';
+import '../css/Login.module.css';
+
 
 export default () => {
-    const onFinish = (values) => {
-        const { email, firstname, password, lastname } = values;
+    const [form] = Form.useForm();
 
-        axios.post('/register', { email, password, firstname, lastname })
+    const handleRegister = (values) => {
+        const { email, username, name, password } = values;
+
+        axios.post('/register', { name, email, username, password })
             .then(() => {
                 console.log('Success:', values);
+                Router.push('/login');
             })
             .catch((err) => {
                 console.log(err);
-            })
-    };
-
-    const onFinishFailed = (errorInfo) => {
-        console.log('Failed:', errorInfo);
+            });
     };
 
     return (
-        <Page title="register">
+        <>
+            <Head>
+                <meta charSet="utf-8" />
+                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+                <title>Register</title>
+            </Head>
+
             <div className="login-container">
-                <h1>Create an account</h1>
+                <h1>Register</h1>
                 <Form
-                    name="normal_login"
                     className="login-form"
-                    initialValues={{ remember: true }}
-                    onFinish={onFinish}
-                    onFinishFailed={onFinishFailed}
+                    form={form}
+                    name="register"
+                    onFinish={handleRegister}
+                    scrollToFirstError
                 >
 
                     <Form.Item
-                        name="email"
-                        rules={[{ required: true, message: 'Please input your Email!' }]}
+                        name="name"
+                        rules={[{ required: true, message: 'Please input your Full Name!', whitespace: true }]}
                     >
                         <Input
-                            prefix={<MailOutlined className="site-form-item-icon" />}
-                            type="email"
-                            placeholder="Email"
+                            prefix={<UserOutlined className="site-form-item-icon" />}
+                            placeholder="Full Name"
                         />
                     </Form.Item>
 
                     <Form.Item
-                        name="firstname"
-                        rules={[{ required: true, message: 'Please input your First Name!' }]}
+                        name="username"
+                        rules={[{ required: true, message: 'Please input your Username!', whitespace: true }]}
                     >
-                        <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Firstname" />
+                        <Input
+                            prefix={<UserOutlined className="site-form-item-icon" />}
+                            placeholder="Username"
+                        />
                     </Form.Item>
 
                     <Form.Item
-                        name="lastname"
-                        rules={[{ required: true, message: 'Please input your last name!' }]}
+                        name="email"
+                        rules={[
+                            {
+                                type: 'email',
+                                message: 'The input is not valid E-mail!',
+                            },
+                            {
+                                required: true,
+                                message: 'Please input your E-mail!',
+                            },
+                        ]}
                     >
-                        <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Lastname" />
+                        <Input
+                            prefix={<MailOutlined className="site-form-item-icon" />}
+                            placeholder="E-Mail"
+                        />
                     </Form.Item>
 
                     <Form.Item
                         name="password"
-                        rules={[{ required: true, message: 'Please input your Password!' }]}
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Please input your password!',
+                            },
+                        ]}
+                        hasFeedback
                     >
-                        <Input
+                        <Input.Password
                             prefix={<LockOutlined className="site-form-item-icon" />}
-                            type="password"
                             minLength={5}
                             placeholder="Password"
                         />
                     </Form.Item>
 
-                    <Form.Item>
-                        <Form.Item name="remember" valuePropName="checked" noStyle>
-                            <Checkbox>Remember me</Checkbox>
-                        </Form.Item>
-                        <a className="login-form-forgot" href="">
-                            Forgot password
-                        </a>
+                    <Form.Item
+                        name="confirm"
+                        dependencies={['password']}
+                        hasFeedback
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Please confirm your password!',
+                            },
+                            ({ getFieldValue }) => ({
+                                validator(rule, value) {
+                                    if (!value || getFieldValue('password') === value) {
+                                        return Promise.resolve();
+                                    }
+                                    return Promise.reject('The two passwords that you entered do not match!');
+                                },
+                            }),
+                        ]}
+                    >
+                        <Input.Password
+                            prefix={<LockOutlined className="site-form-item-icon" />}
+                            minLength={5}
+                            placeholder="Confirm Password"
+                        />
                     </Form.Item>
 
                     <Form.Item>
-                        <Button type="primary" htmlType="submit" className="login-form-button">
-                            Sign Up
+                        <Button type="primary" htmlType="submit" className="login-form-button" id="login-form-button">
+                            Register
                         </Button>
                     </Form.Item>
 
                 </Form>
             </div>
-        </Page>
+        </>
     );
 };
+
+

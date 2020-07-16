@@ -1,22 +1,24 @@
 import React from 'react';
 import { Layout } from 'antd';
+import '../../css/Header.module.css';
+
 const { Header } = Layout;
 
 export default () => {
-    return (
-        <Header style={{ color: "white", padding: "0", paddingRight: "50px" }}>
-            <ul style={{ listStyle: "none", display: "flex" }}>
-                <li>
-                    <a className="navbar_link" href="/" style={{ color: "white" }}>
-                        ALCoding
-                    </a>
-                </li>
-                <li className="navbar_end_li" style={{ marginLeft: "auto" }}>
-                    <a className="navbar_link" href="/login" style={{ color: "white" }}>
-                        Login
-                    </a>
-                </li>
-            </ul>
-        </Header >
-    )
+	return (
+		<Header id="navbar">
+			<ul className="navbar-list">
+				<li>
+					<a className="navbar-link" href="/">
+						<img src="/LOGO.jpg" className="logo" alt="logo" />
+					</a>
+				</li>
+				<li className="navbar-end-li">
+					<a className="navbar-link" href="/login">
+						Login
+					</a>
+				</li>
+			</ul>
+		</Header >
+	);
 };

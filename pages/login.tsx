@@ -1,17 +1,24 @@
-import React, { FC } from 'react';
-import Page from '../components/Page';
+import React from 'react';
+import Head from 'next/head';
 import { Form, Input, Button, Checkbox } from 'antd';
-import { MailOutlined, LockOutlined } from '@ant-design/icons';
+import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import axios from '../axios';
+import '../css/Login.module.css';
+import { useDispatch } from 'react-redux';
+import { logIn } from '../redux/actions';
+import Router from 'next/router';
 
-const Login: FC = () => {
+export default () => {
+    const dispatch = useDispatch();
 
-    const onFinish = values => {
-        const { email, password } = values;
+    const handleLogin = userDetails => {
+        const { username, password } = userDetails;
 
-        axios.post('/login', { email, password })
+        axios.post('/login', { username, password })
             .then(() => {
-                console.log('Login Success:', values);
+                console.log('Login Success:', userDetails);
+                dispatch(logIn(userDetails));
+                Router.push('/');
             })
             .catch((err) => {
                 console.log(err);
@@ -19,24 +26,28 @@ const Login: FC = () => {
     };
 
     return (
-        <Page title="Login">
+        <>
+            <Head>
+                <meta charSet="utf-8" />
+                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+                <title>Login</title>
+            </Head>
             <div className="login-container">
                 <h1>Login</h1>
                 <Form
                     name="normal_login"
                     className="login-form"
                     initialValues={{ remember: true }}
-                    onFinish={onFinish}
+                    onFinish={handleLogin}
                 >
 
                     <Form.Item
-                        name="email"
-                        rules={[{ required: true, message: 'Please input your Email!' }]}
+                        name="username"
+                        rules={[{ required: true, message: 'Please input your Username!' }]}
                     >
                         <Input
-                            prefix={<MailOutlined className="site-form-item-icon" />}
-                            type="email"
-                            placeholder="Email"
+                            prefix={<UserOutlined className="site-form-item-icon" />}
+                            placeholder="Username"
                         />
                     </Form.Item>
 
@@ -55,22 +66,21 @@ const Login: FC = () => {
                     <Form.Item>
                         <Form.Item name="remember" valuePropName="checked" noStyle>
                             <Checkbox>Remember me</Checkbox>
-                        </Form.Item>
                         <a className="login-form-forgot" href="">
-                            Forgot password
-                        </a>
+                            Forgot password?
+						</a>
+                        </Form.Item>
                     </Form.Item>
 
                     <Form.Item>
                         <Button type="primary" htmlType="submit" className="login-form-button" id="login-form-button">
                             Log in
-                        </Button>
+						</Button>
                         Or <a href="/register">register now!</a>
                     </Form.Item>
+
                 </Form>
             </div>
-        </Page>
+        </>
     );
 };
-
-export default Login;
