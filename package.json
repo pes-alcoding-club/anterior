@@ -22,11 +22,19 @@
 	},
 	"homepage": "https://github.com/pes-alcoding-club/anterior#readme",
 	"dependencies": {
+		"@zeit/next-css": "^1.0.1",
 		"antd": "^4.4.2",
+		"axios": "^0.19.2",
 		"next": "^9.4.4",
 		"react": "^16.13.1",
 		"react-dom": "^16.13.1",
-		"typescript": "^3.9.6"
+		"react-redux": "^7.2.0",
+		"react-thunk": "^1.0.0",
+		"redux": "^4.0.5",
+		"redux-devtools-extension": "^2.13.8",
+		"redux-thunk": "^2.3.0",
+		"typescript": "^3.9.6",
+		"webpack": "^4.43.0"
 	},
 	"devDependencies": {
 		"@types/next": "^9.0.0",

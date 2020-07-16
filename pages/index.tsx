@@ -1,12 +1,19 @@
 import React from 'react';
-import Layout from '../components/Layout/Layout';
+import Head from 'next/head';
+import '../css/Index.module.css';
 
-
-const Index  = ():JSX.Element => {
+const Index = (): JSX.Element => {
 	return (
-		<Layout title="Home">
-		    <h1>Anterior</h1>
-		</Layout>
+		<>
+			<Head>
+				<meta charSet="utf-8" />
+				<meta name="viewport" content="initial-scale=1.0, width=device-width" />
+				<title>Alcoding</title>
+			</Head>
+			<div className = "index-container"> 
+				<h1>The Alcoding Club PESU Web Coding Portal</h1>
+			</div>
+		</>
 	);
 };
 
