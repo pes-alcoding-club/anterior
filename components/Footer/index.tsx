@@ -6,7 +6,7 @@ const { Footer } = Layout;
 export default () => {
 	return (
 		<Footer id="footer">
-			The AlCoding Club PESU © 2020
+			The Alcoding Club PESU © 2020
 		</Footer>
 	);
 };

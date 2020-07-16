@@ -8,10 +8,10 @@ const Index = (): JSX.Element => {
 			<Head>
 				<meta charSet="utf-8" />
 				<meta name="viewport" content="initial-scale=1.0, width=device-width" />
-				<title>AlCoding</title>
+				<title>Alcoding</title>
 			</Head>
 			<div className = "index-container"> 
-				<h1>The AlCoding Club PESU Web Coding Portal</h1>
+				<h1>The Alcoding Club PESU Web Coding Portal</h1>
 			</div>
 		</>
 	);
