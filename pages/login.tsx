@@ -1,5 +1,5 @@
 import React from 'react';
-import Head from 'next/head';
+import Page from '../components/Page';
 import { Form, Input, Button, Checkbox } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import axios from '../axios';
@@ -26,12 +26,7 @@ export default () => {
     };
 
     return (
-        <>
-            <Head>
-                <meta charSet="utf-8" />
-                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-                <title>Login</title>
-            </Head>
+        <Page title='Login'>
             <div className="login-container">
                 <h1>Login</h1>
                 <Form
@@ -81,6 +76,6 @@ export default () => {
 
                 </Form>
             </div>
-        </>
+        </Page>
     );
 };
